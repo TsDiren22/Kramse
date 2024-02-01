@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ProjectKramseDiren", "ProjectKramseDiren\ProjectKramseDiren.dtproj", "{291DCBA5-BE73-459E-A7FA-026F48D3CE7C}"
+EndProject
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "KramseCube", "KramseCube\KramseCube.dwproj", "{B1B58D8B-8769-4695-B5DC-185DDDBBCB5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{291DCBA5-BE73-459E-A7FA-026F48D3CE7C}.Development|Default.ActiveCfg = Development
+		{291DCBA5-BE73-459E-A7FA-026F48D3CE7C}.Development|Default.Build.0 = Development
+		{B1B58D8B-8769-4695-B5DC-185DDDBBCB5D}.Development|Default.ActiveCfg = Development
+		{B1B58D8B-8769-4695-B5DC-185DDDBBCB5D}.Development|Default.Build.0 = Development
+		{B1B58D8B-8769-4695-B5DC-185DDDBBCB5D}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A31731F-D056-483B-B0C1-65FA3AE7C445}
+	EndGlobalSection
+EndGlobal

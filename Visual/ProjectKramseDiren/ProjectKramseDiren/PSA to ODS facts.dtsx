@@ -1,0 +1,2621 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/24/2022 2:00:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-51NP1JD4"
+  DTS:CreatorName="LAPTOP-51NP1JD4\diren"
+  DTS:DTSID="{3F28ACD8-57E7-4EE6-9896-BCD71181407B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1043"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{884A2830-4C00-41C4-97F2-4F8C873CDFD3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Journey"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2B856D50-59A2-4B7D-9416-2EBD5BF7932B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Journey"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Journey\Lookup Parse new values"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Parse new values"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[F_Journey]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[F_Journey]) [refTable]
+where [refTable].[RouteId] = ? and [refTable].[CurrentPortId] = ? and [refTable].[ShipRowId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="RouteId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="IdleDays" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrentPortId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AmountOfContainers" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DaysOnSea" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DistanceMiles" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DistanceKm" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrentTEU" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LoadFactor" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CO2EmissionTonnes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FuelConsumptionTonnes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShipRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Journey\109:invalid};#{Package\Load Journey\112:invalid};#{Package\Load Journey\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Journey\Lookup Parse new values.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input].Columns[RouteId]"
+                      cachedDataType="i4"
+                      cachedName="RouteId"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">RouteId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input].Columns[CurrentPortId]"
+                      cachedDataType="i4"
+                      cachedName="CurrentPortId"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentPortId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CurrentPortId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input].Columns[ShipRowId]"
+                      cachedDataType="i4"
+                      cachedName="ShipRowId"
+                      lineageId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ShipRowId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Journey\Lookup ShipId"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup ShipId"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[D_Ship]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[D_Ship]) [refTable]
+where [refTable].[VS_Shipid] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VS_Shipid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_Shipname" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_MaxTEU" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_SpeedInKnots" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_SpeedInKm_H" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_Country" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_Yearcost" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Total_fuel_consumption_per_mile_in_Kg" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="Total_CO2_Emission_per_mile_in_kg" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="ShipRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Start_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="End_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Journey\Lookup ShipId.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Journey\Lookup ShipId.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Journey\Lookup ShipId.Inputs[Lookup Input].Columns[ShipId]"
+                      cachedDataType="i4"
+                      cachedName="ShipId"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VS_Shipid</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Journey\Lookup ShipId.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]"
+                      name="ShipRowId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ShipRowId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Journey\Lookup ShipId.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Journey\Lookup ShipId.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Journey\Lookup ShipId.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Journey\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[F_Journey]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Journey\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RouteId]"
+                      cachedDataType="i4"
+                      cachedName="RouteId"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RouteId]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IdleDays]"
+                      cachedDataType="i4"
+                      cachedName="IdleDays"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdleDays]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdleDays]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrentPortId]"
+                      cachedDataType="i4"
+                      cachedName="CurrentPortId"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentPortId]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentPortId]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AmountOfContainers]"
+                      cachedDataType="i4"
+                      cachedName="AmountOfContainers"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AmountOfContainers]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[AmountOfContainers]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DaysOnSea]"
+                      cachedDataType="i4"
+                      cachedName="DaysOnSea"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaysOnSea]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaysOnSea]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DistanceMiles]"
+                      cachedDataType="i4"
+                      cachedName="DistanceMiles"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DistanceMiles]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DistanceMiles]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DistanceKm]"
+                      cachedDataType="i4"
+                      cachedName="DistanceKm"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DistanceKm]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DistanceKm]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrentTEU]"
+                      cachedDataType="i4"
+                      cachedName="CurrentTEU"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentTEU]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentTEU]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoadFactor]"
+                      cachedDataType="r8"
+                      cachedName="LoadFactor"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadFactor]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoadFactor]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShipRowId]"
+                      cachedDataType="i4"
+                      cachedName="ShipRowId"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipRowId]"
+                      lineageId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CO2EmissionKg]"
+                      cachedDataType="r8"
+                      cachedName="CO2EmissionKg"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CO2EmissionKg]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CO2EmissionKg]" />
+                    <inputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FuelConsumptionKg]"
+                      cachedDataType="r8"
+                      cachedName="FuelConsumptionKg"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FuelConsumptionKg]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[FuelConsumptionKg]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RouteId]"
+                      dataType="i4"
+                      name="RouteId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IdleDays]"
+                      dataType="i4"
+                      name="IdleDays" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentPortId]"
+                      dataType="i4"
+                      name="CurrentPortId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AmountOfContainers]"
+                      dataType="i4"
+                      name="AmountOfContainers" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DaysOnSea]"
+                      dataType="i4"
+                      name="DaysOnSea" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DistanceMiles]"
+                      dataType="i4"
+                      name="DistanceMiles" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DistanceKm]"
+                      dataType="i4"
+                      name="DistanceKm" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CurrentTEU]"
+                      dataType="i4"
+                      name="CurrentTEU" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadFactor]"
+                      dataType="r8"
+                      name="LoadFactor" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipRowId]"
+                      dataType="i4"
+                      name="ShipRowId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CO2EmissionKg]"
+                      dataType="r8"
+                      name="CO2EmissionKg" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FuelConsumptionKg]"
+                      dataType="r8"
+                      name="FuelConsumptionKg" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Journey\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Journey\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Journey]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Journey\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{CEDB7B98-CC0D-4502-A864-444FFD335A2F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramsePSA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RouteId]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]"
+                      name="RouteId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShipId]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]"
+                      name="ShipId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdleDays]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdleDays]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[IdleDays]"
+                      name="IdleDays"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentPortId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrentPortId]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentPortId]"
+                      name="CurrentPortId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[AmountOfContainers]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AmountOfContainers]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[AmountOfContainers]"
+                      name="AmountOfContainers"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaysOnSea]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DaysOnSea]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DaysOnSea]"
+                      name="DaysOnSea"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DistanceMiles]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DistanceMiles]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DistanceMiles]"
+                      name="DistanceMiles"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DistanceKm]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DistanceKm]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[DistanceKm]"
+                      name="DistanceKm"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentTEU]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrentTEU]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrentTEU]"
+                      name="CurrentTEU"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoadFactor]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LoadFactor]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[LoadFactor]"
+                      name="LoadFactor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CO2EmissionKg]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CO2EmissionKg]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[CO2EmissionKg]"
+                      name="CO2EmissionKg"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[FuelConsumptionKg]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FuelConsumptionKg]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[FuelConsumptionKg]"
+                      name="FuelConsumptionKg"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[JourneyId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[JourneyId]"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].Columns[JourneyId]"
+                      name="JourneyId"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RouteId]"
+                      dataType="i4"
+                      name="RouteId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShipId]"
+                      dataType="i4"
+                      name="ShipId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[IdleDays]"
+                      dataType="i4"
+                      name="IdleDays" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrentPortId]"
+                      dataType="i4"
+                      name="CurrentPortId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AmountOfContainers]"
+                      dataType="i4"
+                      name="AmountOfContainers" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DaysOnSea]"
+                      dataType="i4"
+                      name="DaysOnSea" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DistanceMiles]"
+                      dataType="i4"
+                      name="DistanceMiles" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DistanceKm]"
+                      dataType="i4"
+                      name="DistanceKm" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrentTEU]"
+                      dataType="i4"
+                      name="CurrentTEU" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LoadFactor]"
+                      dataType="r8"
+                      name="LoadFactor" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CO2EmissionKg]"
+                      dataType="r8"
+                      name="CO2EmissionKg" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FuelConsumptionKg]"
+                      dataType="r8"
+                      name="FuelConsumptionKg" />
+                    <externalMetadataColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[JourneyId]"
+                      dataType="i4"
+                      name="JourneyId" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RouteId]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RouteId]"
+                      name="RouteId" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShipId]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShipId]"
+                      name="ShipId" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdleDays]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[IdleDays]"
+                      name="IdleDays" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrentPortId]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrentPortId]"
+                      name="CurrentPortId" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AmountOfContainers]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AmountOfContainers]"
+                      name="AmountOfContainers" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DaysOnSea]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DaysOnSea]"
+                      name="DaysOnSea" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DistanceMiles]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DistanceMiles]"
+                      name="DistanceMiles" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DistanceKm]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DistanceKm]"
+                      name="DistanceKm" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrentTEU]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrentTEU]"
+                      name="CurrentTEU" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LoadFactor]"
+                      dataType="r8"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LoadFactor]"
+                      name="LoadFactor" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CO2EmissionKg]"
+                      dataType="r8"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CO2EmissionKg]"
+                      name="CO2EmissionKg" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FuelConsumptionKg]"
+                      dataType="r8"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FuelConsumptionKg]"
+                      name="FuelConsumptionKg" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[JourneyId]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[JourneyId]"
+                      name="JourneyId" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Journey.Paths[Lookup Match Output]"
+              endId="Package\Load Journey\Lookup Parse new values.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Journey\Lookup ShipId.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Journey.Paths[Lookup No Match Output]"
+              endId="Package\Load Journey\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Load Journey\Lookup Parse new values.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load Journey.Paths[OLE DB Source Output]"
+              endId="Package\Load Journey\Lookup ShipId.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Journey\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Shipment"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{85B4882A-DDE9-4640-985D-13FE49FC8AA8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Shipment"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Shipment\Lookup ConsignorId"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup ConsignorId"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[D_Consignor]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[D_Consignor]) [refTable]
+where [refTable].[Id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Consignor" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="City" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Country" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Discount" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ConsignorRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Start_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="End_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsignorId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Shipment\Lookup ConsignorId.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Shipment\Lookup ConsignorId.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup ConsignorId.Inputs[Lookup Input].Columns[ConsignorId]"
+                      cachedDataType="i4"
+                      cachedName="ConsignorId"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsignorId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup ConsignorId.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Match Output].Columns[ConsignorRowId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Match Output].Columns[ConsignorRowId]"
+                      name="ConsignorRowId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ConsignorRowId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup ConsignorId.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Shipment\Lookup ConsignorId.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Shipment\Lookup Container"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Container"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[D_Container]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[D_Container]) [refTable]
+where [refTable].[Id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Type" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RefrigerationFlag" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PowerFlag" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Length" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="Cubes" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="EuroPricePerKm" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="ContainertypeRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Start_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="End_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainertypeId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Shipment\Lookup Container.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Shipment\Lookup Container.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup Container.Inputs[Lookup Input].Columns[ContainertypeId]"
+                      cachedDataType="i4"
+                      cachedName="ContainertypeId"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainertypeId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Shipment\Lookup Container.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup Container.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup Container.Outputs[Lookup Match Output].Columns[ContainertypeRowId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Shipment\Lookup Container.Outputs[Lookup Match Output].Columns[ContainertypeRowId]"
+                      name="ContainertypeRowId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ContainertypeRowId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup Container.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup Container.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup Container.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Shipment\Lookup Container.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup Container.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup Container.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup Container.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup Container.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Shipment\Lookup Parse new values"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Parse new values"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[F_ShipmentDetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[F_ShipmentDetail]) [refTable]
+where [refTable].[ShipmentId] = ? and [refTable].[ContainerNr] = ? and [refTable].[Item] = ? and [refTable].[RouteId] = ? and [refTable].[ConsignorRowId] = ? and [refTable].[ContainertypeRowId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ShipmentId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Item" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ContainertypeRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RouteId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ShipRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ConsignorRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ContainerNr" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Costs" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Discount" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Distance" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipmentId]};#{Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainerNr]};#{Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item]};#{Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]};#{Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Match Output].Columns[ConsignorRowId]};#{Package\Load Shipment\Lookup Container.Outputs[Lookup Match Output].Columns[ContainertypeRowId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Shipment\Lookup Parse new values.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input].Columns[ShipmentId]"
+                      cachedDataType="i4"
+                      cachedName="ShipmentId"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipmentId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ShipmentId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input].Columns[ContainerNr]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ContainerNr"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainerNr]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ContainerNr</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input].Columns[ConsignorRowId]"
+                      cachedDataType="i4"
+                      cachedName="ConsignorRowId"
+                      lineageId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Match Output].Columns[ConsignorRowId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ConsignorRowId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input].Columns[ContainertypeRowId]"
+                      cachedDataType="i4"
+                      cachedName="ContainertypeRowId"
+                      lineageId="Package\Load Shipment\Lookup Container.Outputs[Lookup Match Output].Columns[ContainertypeRowId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ContainertypeRowId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input].Columns[Item]"
+                      cachedDataType="i4"
+                      cachedName="Item"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Item</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input].Columns[RouteId]"
+                      cachedDataType="i4"
+                      cachedName="RouteId"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">RouteId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Shipment\Lookup ShipId"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup ShipId"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[D_Ship]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[D_Ship]) [refTable]
+where [refTable].[VS_Shipid] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="VS_Shipid" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_Shipname" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_MaxTEU" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_SpeedInKnots" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_SpeedInKm_H" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_Country" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Sh_Yearcost" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Total_fuel_consumption_per_mile_in_Kg" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="Total_CO2_Emission_per_mile_in_kg" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="ShipRowId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Start_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="End_date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Shipment\Lookup ShipId.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Shipment\Lookup ShipId.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Shipment\Lookup ShipId.Inputs[Lookup Input].Columns[ShipId]"
+                      cachedDataType="i4"
+                      cachedName="ShipId"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">VS_Shipid</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup ShipId.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]"
+                      name="ShipRowId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ShipRowId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Shipment\Lookup ShipId.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Shipment\Lookup ShipId.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Shipment\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[F_ShipmentDetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Shipment\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{33DF4AB5-A534-4A44-BC60-0399FC7B70D5}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramseODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShipmentId]"
+                      cachedDataType="i4"
+                      cachedName="ShipmentId"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipmentId]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipmentId]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Distance]"
+                      cachedDataType="i4"
+                      cachedName="Distance"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Distance]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Distance]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ContainerNr]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="ContainerNr"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContainerNr]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainerNr]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Item]"
+                      cachedDataType="i4"
+                      cachedName="Item"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Item]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[RouteId]"
+                      cachedDataType="i4"
+                      cachedName="RouteId"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RouteId]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Costs]"
+                      cachedDataType="i4"
+                      cachedName="Costs"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Costs]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Costs]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Discount]"
+                      cachedDataType="i4"
+                      cachedName="Discount"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Discount]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShipRowId]"
+                      cachedDataType="i4"
+                      cachedName="ShipRowId"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipRowId]"
+                      lineageId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Match Output].Columns[ShipRowId]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ConsignorRowId]"
+                      cachedDataType="i4"
+                      cachedName="ConsignorRowId"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConsignorRowId]"
+                      lineageId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Match Output].Columns[ConsignorRowId]" />
+                    <inputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ContainertypeRowId]"
+                      cachedDataType="i4"
+                      cachedName="ContainertypeRowId"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContainertypeRowId]"
+                      lineageId="Package\Load Shipment\Lookup Container.Outputs[Lookup Match Output].Columns[ContainertypeRowId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipmentId]"
+                      dataType="i4"
+                      name="ShipmentId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Item]"
+                      dataType="i4"
+                      name="Item" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContainertypeRowId]"
+                      dataType="i4"
+                      name="ContainertypeRowId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RouteId]"
+                      dataType="i4"
+                      name="RouteId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShipRowId]"
+                      dataType="i4"
+                      name="ShipRowId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConsignorRowId]"
+                      dataType="i4"
+                      name="ConsignorRowId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContainerNr]"
+                      dataType="wstr"
+                      length="50"
+                      name="ContainerNr" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Costs]"
+                      dataType="i4"
+                      name="Costs" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Discount]"
+                      dataType="i4"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Distance]"
+                      dataType="i4"
+                      name="Distance" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Shipment\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Shipment\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ShipmentDetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Shipment\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{CEDB7B98-CC0D-4502-A864-444FFD335A2F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LAPTOP-51NP1JD4.KramsePSA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipmentId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShipmentId]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipmentId]"
+                      name="ShipmentId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsignorId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConsignorId]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ConsignorId]"
+                      name="ConsignorId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Distance]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Distance]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Distance]"
+                      name="Distance"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainerNr]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContainerNr]"
+                      length="50"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainerNr]"
+                      name="ContainerNr"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Item]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Item]"
+                      name="Item"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShipId]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShipId]"
+                      name="ShipId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RouteId]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[RouteId]"
+                      name="RouteId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainertypeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContainertypeId]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[ContainertypeId]"
+                      name="ContainertypeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Costs]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Costs]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Costs]"
+                      name="Costs"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Discount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShipmentId]"
+                      dataType="i4"
+                      name="ShipmentId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ConsignorId]"
+                      dataType="i4"
+                      name="ConsignorId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Distance]"
+                      dataType="i4"
+                      name="Distance" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContainerNr]"
+                      dataType="wstr"
+                      length="50"
+                      name="ContainerNr" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Item]"
+                      dataType="i4"
+                      name="Item" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShipId]"
+                      dataType="i4"
+                      name="ShipId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[RouteId]"
+                      dataType="i4"
+                      name="RouteId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ContainertypeId]"
+                      dataType="i4"
+                      name="ContainertypeId" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Costs]"
+                      dataType="i4"
+                      name="Costs" />
+                    <externalMetadataColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Discount]"
+                      dataType="i4"
+                      name="Discount" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShipmentId]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShipmentId]"
+                      name="ShipmentId" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConsignorId]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ConsignorId]"
+                      name="ConsignorId" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContainertypeId]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContainertypeId]"
+                      name="ContainertypeId" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Distance]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Distance]"
+                      name="Distance" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContainerNr]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ContainerNr]"
+                      name="ContainerNr" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Item]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Item]"
+                      name="Item" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShipId]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShipId]"
+                      name="ShipId" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Costs]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Costs]"
+                      name="Costs" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Discount]"
+                      name="Discount" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RouteId]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[RouteId]"
+                      name="RouteId" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Shipment.Paths[Lookup Match Output]"
+              endId="Package\Load Shipment\Lookup ConsignorId.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Shipment\Lookup ShipId.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Shipment.Paths[Lookup Match Output1]"
+              endId="Package\Load Shipment\Lookup Container.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Shipment\Lookup ConsignorId.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Shipment.Paths[Lookup Match Output2]"
+              endId="Package\Load Shipment\Lookup Parse new values.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Shipment\Lookup Container.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Shipment.Paths[Lookup No Match Output]"
+              endId="Package\Load Shipment\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Load Shipment\Lookup Parse new values.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Load Shipment.Paths[OLE DB Source Output]"
+              endId="Package\Load Shipment\Lookup ShipId.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Shipment\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\Load Journey"
+          TopLeft="166.428574262833,74.1764716285323" />
+        <NodeLayout
+          Size="148.8,41.6"
+          Id="Package\Load Shipment"
+          TopLeft="352.857148866264,68.0588244839111" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Journey">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\Load Journey\Lookup ShipId"
+          TopLeft="227,189" />
+        <NodeLayout
+          Size="197.6,41.6"
+          Id="Package\Load Journey\Lookup Parse new values"
+          TopLeft="209,271" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load Journey\OLE DB Destination"
+          TopLeft="218.28571427355,352" />
+        <EdgeLayout
+          Id="Package\Load Journey.Paths[Lookup No Match Output]"
+          TopLeft="305.642857136775,312.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.4"
+              Start="0,0"
+              End="0,31.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,10.1453125,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Journey.Paths[Lookup Match Output]"
+          TopLeft="299.8,230.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,40.4"
+              Start="0,0"
+              End="8,32.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.2"
+                    Point2="0,20.2"
+                    Point3="4,20.2" />
+                  <mssgle:LineSegment
+                    End="4,20.2" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,20.2"
+                    Point2="8,20.2"
+                    Point3="8,24.2" />
+                  <mssgle:LineSegment
+                    End="8,32.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-44.19138671875,25.2,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Load Journey\OLE DB Source"
+          TopLeft="220.000003746578,108.588236817027" />
+        <EdgeLayout
+          Id="Package\Load Journey.Paths[OLE DB Source Output]"
+          TopLeft="297.300001873289,150.188236817027">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.8117631829734"
+              Start="0,0"
+              End="0,31.3117631829734">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.3117631829734" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Journey\Lookup ShipId">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[D_Ship]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Journey\Lookup Parse new values">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[F_Journey]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Journey\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Shipment">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\Load Shipment\OLE DB Source"
+          TopLeft="90.7142872591406,45.1176476915816" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load Shipment\OLE DB Destination"
+          TopLeft="340.000005790166,224.82353256483" />
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\Load Shipment\Lookup Container"
+          TopLeft="83.5714299946415,116.235295747803" />
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\Load Shipment\Lookup ShipId"
+          TopLeft="341.428577243065,44.3529417985038" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Load Shipment\Lookup ConsignorId"
+          TopLeft="321.428576902467,114.705883961648" />
+        <NodeLayout
+          Size="197.6,41.6"
+          Id="Package\Load Shipment\Lookup Parse new values"
+          TopLeft="66.1428582862933,227.117650244063" />
+        <EdgeLayout
+          Id="Package\Load Shipment.Paths[OLE DB Source Output]"
+          TopLeft="240.314287259141,65.5352947450427">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101.114289983925,0"
+              Start="0,0"
+              End="93.6142899839248,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="93.6142899839248,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Shipment.Paths[Lookup No Match Output]"
+          TopLeft="263.742858286293,246.770591404447">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.2571475038727,0"
+              Start="0,0"
+              End="68.7571475038727,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.7571475038727,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-21.4278129668136,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Shipment.Paths[Lookup Match Output2]"
+          TopLeft="164.457144140467,157.835295747803">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69.28235449626"
+              Start="0,0"
+              End="0,61.78235449626">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.78235449626" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,25.08648974813,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Shipment.Paths[Lookup Match Output1]"
+          TopLeft="321.428576902467,136.270589854726">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-77.0571469078258,0"
+              Start="0,0"
+              End="-69.5571469078258,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-69.5571469078258,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-82.9699601726629,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Shipment.Paths[Lookup Match Output]"
+          TopLeft="411.028577072766,85.9529417985038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.752942163144"
+              Start="0,0"
+              End="0,21.252942163144">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.252942163144" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,4.821783581572,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Shipment\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Shipment\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Shipment\Lookup Container">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[D_Container]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Shipment\Lookup ShipId">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[D_Ship]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Shipment\Lookup ConsignorId">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[D_Consignor]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Shipment\Lookup Parse new values">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[F_ShipmentDetail]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Journey\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
